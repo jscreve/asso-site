@@ -1,0 +1,18 @@
+<div class="row custom-row">
+  <div class="col-md-5 custom-container jumbotron">
+    <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)" class="form-horizontal">
+      <fieldset>
+        <legend>Faire un don</legend>
+        <div class="md-form">
+          <input type="number"
+                 id="amount"
+                 placeholder="Montant (Eur)" formControlName="amount">
+        </div>
+        <!--- Buttons Block --->
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Soumettre</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
