@@ -1,0 +1,44 @@
+<section>
+  <p></p>
+</section>
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <h3 class="card-header primary-color white-text">Estimation de votre consommation</h3>
+
+        <div class="row">
+          <div class="col-md-12">
+            <img src="assets/images/ampasindava/Centrale1.jpg" class="img-fluid">
+            <p></p>
+            <h4><i class="fa fa-plug fa-lg"></i><b> {{electricResult}} kWh de consommation électrique</b></h4>
+            <h4><b> {{gazResult}} kWh de consommation gaz</b></h4>
+            <h4><i class="fa fa-recycle fa-lg"></i> Vous voulez nous aider à rendre l'énergie plus propre ? Faites un
+              don à notre association !</h4>
+          </div>
+        </div>
+
+        <!--- Buttons Block --->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <button class="btn btn-primary" (click)="onPrevious()">Précédent</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <button class="btn btn-primary" (click)="home()">Accueil</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <img src="assets/images/ampasindava/Ecole.jpg" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

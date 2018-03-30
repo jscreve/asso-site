@@ -1,0 +1,170 @@
+<section>
+  <p></p>
+</section>
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)" class="form-horizontal">
+          <fieldset>
+            <h3 class="card-header primary-color white-text">Estimation de votre consommation</h3>
+
+            <h5 class="card-header primary-color white-text">Equipements électriques</h5>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="electricHeating">Chauffage élecrique</label>
+                  <input mdbDeepDirective type="checkbox" id="electricHeating" name="electricHeating" value="yes"
+                         placeholder="" formControlName="electricHeating">
+                </div>
+
+                <div class="form-group">
+                  <label for="electricHeating">Chauffe eau électrique</label>
+                  <input mdbDeepDirective type="checkbox" id="electricBoiler" name="electricBoiler" value="yes"
+                         placeholder="" formControlName="electricBoiler">
+                </div>
+
+                <div class="form-group">
+                  <label for="electricCooking">Plaque de cuisson élecrique</label>
+                  <input mdbDeepDirective type="checkbox" id="electricCooking" name="electricCooking" value="yes"
+                         placeholder="" formControlName="electricCooking">
+                </div>
+
+                <div class="form-group">
+                  <label for="electricOven">Four élecrique</label>
+                  <input mdbDeepDirective type="checkbox" id="electricOven" name="electricOven" value="yes"
+                         placeholder="" formControlName="electricOven">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="microWaveOven">Four micro onde</label>
+                  <input mdbDeepDirective type="checkbox" id="microWaveOven" name="microWaveOven" value="yes"
+                         placeholder="" formControlName="microWaveOven">
+                </div>
+
+                <div class="form-group">
+                  <label for="iron">Fer à repasser</label>
+                  <input mdbDeepDirective type="checkbox" id="iron" name="iron" value="yes"
+                         placeholder="" formControlName="iron">
+                </div>
+
+                <div class="form-group">
+                  <label for="vacuum">Aspirateur</label>
+                  <input mdbDeepDirective type="checkbox" id="vacuum" name="vacuum" value="yes"
+                         placeholder="" formControlName="vacuum">
+                </div>
+
+                <div class="form-group">
+                  <label for="hairDryer">Sèche cheveux</label>
+                  <input mdbDeepDirective type="checkbox" id="hairDryer" name="hairDryer" value="yes"
+                         placeholder="" formControlName="hairDryer">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fridge">Réfrigérateurs</label>
+                  <select id="fridge"
+                          placeholder="" formControlName="fridge" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="TV">Télévisions</label>
+                  <select id="TV"
+                          placeholder="" formControlName="TV" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="dishWasher">Lave vaisselle</label>
+                  <select id="dishWasher"
+                          placeholder="" formControlName="dishWasher" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="washingMachine">Lave linge</label>
+                  <select id="washingMachine"
+                          placeholder="" formControlName="washingMachine" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="tumbleDryer">Sèche linge</label>
+                  <select id="tumbleDryer"
+                          placeholder="" formControlName="tumbleDryer" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="PCs">Ordinateurs</label>
+                  <select id="PCs"
+                          placeholder="" formControlName="PCs" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!--- Buttons Block --->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <button class="btn btn-primary" (click)="onPrevious()">Précédent</button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Suivant</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <img src="assets/images/ampasindava/Ecole.jpg" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

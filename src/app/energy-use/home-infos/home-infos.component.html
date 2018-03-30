@@ -1,0 +1,73 @@
+<section>
+  <p></p>
+</section>
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)" class="form-horizontal">
+          <fieldset>
+            <h3 class="card-header primary-color white-text">Estimation de votre consommation</h3>
+
+            <!--div class="form-group">
+              <input type="number"
+                     id="knownkWhPerYear"
+                     placeholder="Votre consommation électrique annuelle (kWh)" formControlName="knownkWhPerYear"
+                     class="form-control">
+            </div -->
+
+            <h5 class="card-header primary-color white-text">Caractéristiques du logement</h5>
+
+            <div class="form-group">
+              <input mdbActive type="number"
+                     id="appartmentSize"
+                     placeholder="Taille de l'appartement (m2)" formControlName="appartmentSize" class="form-control">
+              <div
+                *ngIf="(myForm.controls['appartmentSize'].touched || submitted) && myForm.controls['appartmentSize'].errors?.required">
+                <div class="alert alert-danger">Le champ ne peut être vide</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inhabitants">Nombre d'habitants</label>
+              <select id="inhabitants"
+                      placeholder="" formControlName="inhabitants" class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+
+            <label>Type d'énergie</label>
+            <div class="form-group">
+              <input mdbDeepDirective name="electricityAndGas" formControlName="electricityAndGas" type="radio"
+                     id="electriciy" value="electricity" checked>
+              <label for="electriciy">Electricité seulement</label>
+            </div>
+
+            <div class="form-group">
+              <input mdbDeepDirective name="electricityAndGas" formControlName="electricityAndGas" type="radio"
+                     id="electricityAndGas" value="electricityAndGas">
+              <label for="electricityAndGas">Electricité et gaz</label>
+            </div>
+
+            <!--- Buttons Block --->
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Suivant</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <img src="assets/images/chateau.jpg" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

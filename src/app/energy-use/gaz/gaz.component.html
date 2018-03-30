@@ -1,0 +1,61 @@
+<section>
+  <p></p>
+</section>
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)" class="form-horizontal">
+          <fieldset>
+            <h3 class="card-header primary-color white-text">Estimation de votre consommation</h3>
+
+            <h5 class="card-header primary-color white-text">Equipements gaz</h5>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="gazHeating">Chauffage gaz</label>
+                  <input mdbDeepDirective type="checkbox" id="gazHeating" name="gazHeating" value="yes"
+                         placeholder="" formControlName="gazHeating">
+                </div>
+
+                <div class="form-group">
+                  <label for="gazWaterHeating">Eau chaude gaz</label>
+                  <input mdbDeepDirective type="checkbox" id="gazWaterHeating" name="gazWaterHeating" value="yes"
+                         placeholder="" formControlName="gazWaterHeating">
+                </div>
+
+                <div class="form-group">
+                  <label for="gazCooking">Cuisson gaz</label>
+                  <input mdbDeepDirective type="checkbox" id="gazCooking" name="gazCooking" value="yes"
+                         placeholder="" formControlName="gazCooking">
+                </div>
+              </div>
+            </div>
+
+            <!--- Buttons Block --->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <button class="btn btn-primary" (click)="onPrevious()">Précédent</button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Suivant</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <img src="assets/images/ampasindava/Ecole.jpg" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

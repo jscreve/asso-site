@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EnergyUseModel} from '../energy-use/energy-use-model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {EmailService} from '../services/email.service';
+import {EmailDataModel} from './data/email-data-model';
 
 @Component({
   selector: 'app-contacts',
@@ -17,10 +18,10 @@ export class ContactsComponent implements OnInit {
 
   public myContactForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
-  public events: any[] = []; // use later to display form changes
-  public _contactUrl = 'https://enr-solidr.000webhostapp.com/mail.php';
+  // public _contactUrl = 'https://enr-solidr.000webhostapp.com/mail.php';
+  private data: any;
 
-  constructor(private _fb: FormBuilder, private _http: HttpClient) {
+  constructor(private _fb: FormBuilder, private _http: HttpClient, private _emailService: EmailService) {
   } // form builder simplify form initialization
 
   ngOnInit() {
@@ -31,20 +32,25 @@ export class ContactsComponent implements OnInit {
       subject: ['', [<any>Validators.required]],
       message: ['', [<any>Validators.required]],
     });
-
-    this.subcribeToFormChanges();
-
   }
 
-  save(model: EnergyUseModel, isValid: boolean) {
+  save(model: any, isValid: boolean) {
     this.submitted = true;
     console.log(model, isValid);
-    this.sendMail(model).subscribe();
+    this.sendMail(model);
   }
 
-  sendMail(value: any): Observable<any> {
-
-    const urlSearchParams = new URLSearchParams(value);
+  sendMail(email: EmailDataModel): Observable<any> {
+    this.data = this._emailService.create(email);
+    return this.data.subscribe(
+      value => {
+        console.log('Email sent.');
+      },
+      err => {
+        console.log('Error occured.' + err);
+      }
+    );
+    /*const urlSearchParams = new URLSearchParams(value);
     urlSearchParams.set('submit', 'true');
     urlSearchParams.set('name', value.name);
     urlSearchParams.set('email', value.email);
@@ -56,16 +62,7 @@ export class ContactsComponent implements OnInit {
     return this._http.post(this._contactUrl, body, {
       headers: headers
     }).do(data => console.log('server data:', data))  // debug
-      .catch(this.handleError);
-  }
-
-  subcribeToFormChanges() {
-    // initialize stream
-    const myFormValueChanges$ = this.myContactForm.valueChanges;
-
-    // subscribe to the stream
-    myFormValueChanges$.subscribe(x => this.events
-      .push({event: 'STATUS CHANGED', object: x}));
+      .catch(this.handleError);*/
   }
 
   private handleError(error: any) {
