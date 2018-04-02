@@ -26,11 +26,18 @@ export class MakePaymentComponent implements OnInit {
     this.handler = StripeCheckout.configure({
       key: environment.stripeKey,
       image: '/assets/images/logo/logo.jpeg',
+      // image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
-      country: 'FR',
       currency: 'eur',
       token: token => {
-        this.paymentSvc.processPayment(token, this.amount);
+        this.paymentSvc.processPayment(token.id, this.amount).subscribe(
+          value => {
+            console.log(value);
+          },
+          err => {
+            console.log('Error occured in payment.' + err);
+          }
+        );
       }
     });
   }
