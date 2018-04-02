@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8761'
+  stripeKey: 'pk_test_rEdOkXSnUj5YrTZjR4aZWJUV',
+  apiUrl: 'https://lumieresolidaire.org/server'
 };
