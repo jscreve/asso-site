@@ -8,7 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './home/home.component';
 import {MoneyComponent} from './money/money.component';
 import {ContactsComponent} from './contacts/contacts.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {PaymentModule} from './payments/payment/payment.module';
 import {ActivitiesComponent} from './activities/activities.component';
 import {EnergyService} from './services/energy.service';
@@ -19,6 +19,8 @@ import {FormDataService} from './energy-use/data/form-data.service';
 import {HomeInfosComponent} from './energy-use/home-infos/home-infos.component';
 import {ResultComponent} from './energy-use/result/result.component';
 import {FooterComponent} from './footer/footer.component';
+import {FeedCardComponent} from './activities/feed-card/feed-card.component';
+import {FeedService} from './services/feed-service.service';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import {FooterComponent} from './footer/footer.component';
     GazComponent,
     ResultComponent,
     FooterComponent,
+    FeedCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +43,10 @@ import {FooterComponent} from './footer/footer.component';
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    PaymentModule
+    PaymentModule,
+    HttpClientJsonpModule
   ],
-  providers: [EnergyService, FormDataService, EmailService],
+  providers: [EnergyService, FormDataService, EmailService, FeedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
