@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {PaymentService} from '../payment.service';
 import {environment} from '../../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MakePaymentModel} from './make-payment-model';
+import {AddressModelRessource, MakePaymentModel, MakePaymentRessource, UserModelRessource} from './make-payment-model';
 
 @Component({
   selector: 'app-make-payment',
@@ -13,7 +13,7 @@ export class MakePaymentComponent implements OnInit {
   private handler: any;
   public myForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
-  public amount: number;
+  public paymentRessource: MakePaymentRessource;
 
   constructor(private _fb: FormBuilder, private paymentSvc: PaymentService) {
   }
@@ -35,7 +35,8 @@ export class MakePaymentComponent implements OnInit {
       locale: 'auto',
       currency: 'eur',
       token: token => {
-        this.paymentSvc.processPayment(token.id, this.amount).subscribe(
+        this.paymentRessource.token = token.id;
+        this.paymentSvc.processPayment(this.paymentRessource).subscribe(
           value => {
             console.log(value);
           },
@@ -49,7 +50,19 @@ export class MakePaymentComponent implements OnInit {
 
   save(model: MakePaymentModel, isValid: boolean) {
     this.submitted = true; // set form submit to true
-    this.amount = model.amount * 100;
+    this.paymentRessource = new MakePaymentRessource();
+    this.paymentRessource.amount = model.amount * 100;
+    this.paymentRessource.user = new UserModelRessource();
+    this.paymentRessource.user.last_name = model.last_name;
+    this.paymentRessource.user.names = model.names;
+    this.paymentRessource.user.email = model.email;
+    this.paymentRessource.user.phone = model.phone;
+    this.paymentRessource.user.address = new AddressModelRessource();
+    this.paymentRessource.user.address.street = model.address;
+    this.paymentRessource.user.address.postalCode = model.postal_code;
+    this.paymentRessource.user.address.city = model.city;
+    this.paymentRessource.user.address.country = model.country;
+
     // check if model is valid
     // if valid, call API to save customer
     console.log(model, isValid);
@@ -63,7 +76,8 @@ export class MakePaymentComponent implements OnInit {
     this.handler.open({
       name: 'Don',
       excerpt: 'Faire un paiement',
-      amount: this.amount
+      amount: this.paymentRessource.amount,
+      email: this.paymentRessource.user.email
     });
   }
 
