@@ -1,8 +1,8 @@
 <div class="card">
 
   <!--Card image-->
-  <div class="view overlay">
-    <img *ngIf="feedEntry.enclosure.link.indexOf('gravatar.com') == -1" src="{{feedEntry.enclosure.link}}"
+  <div *ngFor="let item of feedEntry.img" class="view overlay">
+    <img src="{{item}}"
          class="img-fluid" alt="">
     <a href="#">
       <div class="mask rgba-white-slight"></div>
@@ -13,9 +13,9 @@
   <div class="card-body">
     <!--Title-->
     <h4 class="card-title">{{feedEntry.title}}</h4>
-    <h4 class="card-subtitle">{{feedEntry.author}} - {{feedEntry.pubDate | date:'dd-MM-yyyy'}}</h4>
+    <h4 class="card-subtitle">{{feedEntry.author}} - {{feedEntry.date | date:'dd-MM-yyyy'}}</h4>
     <!--Text-->
-    <p class="card-text">{{feedEntry.description}}</p>
+    <p [innerHTML]="feedEntry.description" class="card-text"></p>
   </div>
 
 </div>

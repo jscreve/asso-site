@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
-import {Feed} from '../models/feed';
+import {Feed} from '../activities/feed-card/model/feed';
 import {environment} from '../../environments/environment';
 
 @Injectable()
@@ -11,10 +11,10 @@ export class FeedService {
   ) {
   }
 
-  private _rss2json = environment.rss2json;
+  private _rest2json = environment.rest2json;
 
   getFeedContent(url: string): Observable<Feed> {
-    return this._httpClient.jsonp(this._rss2json + url, 'callback')
+    return this._httpClient.get(this._rest2json)
       .catch(this.handleError);
   }
 

@@ -8,6 +8,6 @@ export const environment = {
   stripeKey: 'pk_test_rEdOkXSnUj5YrTZjR4aZWJUV',
   apiUrl: 'http://localhost:8761',
   newsFeedUrl: 'https://lumieresolidaire.wordpress.com/blog/feed',
-  rss2json: 'https://api.rss2json.com/v1/api.json?rss_url='
+  rest2json: 'https://public-api.wordpress.com/rest/v1.1/sites/lumieresolidaire.wordpress.com/posts?pretty=true&fields=title,excerpt,attachments,author,date'
 };
 

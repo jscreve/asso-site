@@ -18,9 +18,9 @@ import {GazComponent} from './energy-use/gaz/gaz.component';
 import {FormDataService} from './energy-use/data/form-data.service';
 import {HomeInfosComponent} from './energy-use/home-infos/home-infos.component';
 import {ResultComponent} from './energy-use/result/result.component';
-import {FooterComponent} from './footer/footer.component';
 import {FeedCardComponent} from './activities/feed-card/feed-card.component';
 import {FeedService} from './services/feed-service.service';
+import {MyCommonModule} from './my-common.module';
 
 
 @NgModule({
@@ -34,7 +34,6 @@ import {FeedService} from './services/feed-service.service';
     ElectricityComponent,
     GazComponent,
     ResultComponent,
-    FooterComponent,
     FeedCardComponent,
   ],
   imports: [
@@ -44,6 +43,7 @@ import {FeedService} from './services/feed-service.service';
     AppRoutingModule,
     HttpClientModule,
     PaymentModule,
+    MyCommonModule,
     HttpClientJsonpModule
   ],
   providers: [EnergyService, FormDataService, EmailService, FeedService],

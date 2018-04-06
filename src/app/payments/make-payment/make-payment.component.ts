@@ -17,16 +17,21 @@ export class MakePaymentComponent implements OnInit {
 
   constructor(private _fb: FormBuilder, private paymentSvc: PaymentService) {
   }
-
   ngOnInit() {
-    // the short way
     this.myForm = this._fb.group({
-      amount: ['', [<any>Validators.required]],
+      last_name: ['', [<any>Validators.required]],
+      names: ['', [<any>Validators.required]],
+      address: ['', [<any>Validators.required]],
+      postal_code: ['', [<any>Validators.pattern('[0-9]{5}'), <any>Validators.required]],
+      city: ['', [<any>Validators.required]],
+      country: ['France', [<any>Validators.required]],
+      email: ['', [<any>Validators.email]],
+      phone: ['', [<any>Validators.pattern('[0-9]{10}')]],
+      amount: ['', [<any>Validators.required]]
     });
     this.handler = StripeCheckout.configure({
       key: environment.stripeKey,
       image: '/assets/images/logo/logo.jpeg',
-      // image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
       currency: 'eur',
       token: token => {
@@ -49,7 +54,9 @@ export class MakePaymentComponent implements OnInit {
     // if valid, call API to save customer
     console.log(model, isValid);
 
-    this.handlePayment();
+    if (isValid) {
+      this.handlePayment();
+    }
   }
 
   handlePayment() {
