@@ -8,6 +8,8 @@ import {ElectricityComponent} from './energy-use/electricity/electricity.compone
 import {GazComponent} from './energy-use/gaz/gaz.component';
 import {HomeInfosComponent} from './energy-use/home-infos/home-infos.component';
 import {ResultComponent} from './energy-use/result/result.component';
+import {LoginComponent} from './login/login.component';
+import {AdminComponent} from './admin/admin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path: 'money', component: MoneyComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'activities', component: ActivitiesComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'admin', component: AdminComponent},
 ];
 
 @NgModule({

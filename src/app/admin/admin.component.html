@@ -1,0 +1,25 @@
+<section>
+  <p></p>
+</section>
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="card card-cascade narrower">
+        <h3 class="card-header primary-color white-text">Générer les reçus fiscaux</h3>
+        <div class="form-group">
+          <div class="md-form">
+            <i class="fa fa-money prefix"></i>
+            <input type="number" id="year" placeholder="Année" name="year" required
+                   [(ngModel)]="receiptYear">
+          </div>
+        </div>
+        <!--- Buttons Block --->
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" (click)="generateReceipt()">Générer reçus</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
