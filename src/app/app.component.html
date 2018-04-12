@@ -1,10 +1,10 @@
 <section>
   <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark primary-color" [containerInside]="false">
-    <logo>
+    <!-- logo>
       <a class="navbar-brand" href="#">
         <img src="assets/images/logo/logo.jpeg" alt="logo" style="width:80px;">
       </a>
-    </logo>
+    </logo -->
     <links>
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
@@ -12,7 +12,7 @@
           <a class="nav-link waves-effect waves-light" routerLink="/home">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" routerLink="/activities">Notre activité</a>
+          <a class="nav-link waves-effect waves-light" routerLink="/activities">Notre blog</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light" routerLink="/home-energy-use">Votre consommation</a>
@@ -24,7 +24,7 @@
           <a class="nav-link waves-effect waves-light" routerLink="/contacts">Contacts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" routerLink="/login">Connexion / Déconnexion</a>
+          <a class="nav-link waves-effect waves-light" routerLink="/login">Connexion</a>
         </li>
         <li class="nav-item" *ngIf="(loggedUser$ | async) as loggedUser">
           <a class="nav-link waves-effect waves-light" routerLink="/admin">Menu administration</a>

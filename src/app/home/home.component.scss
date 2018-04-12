@@ -1,0 +1,39 @@
+.rcorners_top {
+  border-radius: 15px 15px 0px 0px;
+  background: #A6D2FD;
+  padding: 20px;
+}
+
+.rcorners_bottom {
+  border-radius: 0px 0px 15px 15px;
+  background: cornflowerblue;
+  padding: 20px;
+}
+
+.main_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-collapse: separate;
+  border-spacing: 15px;
+}
+
+.main_title {
+  border-style: solid;
+  padding: 20px 45px 34px 60px;
+}
+
+.small_title {
+  border-bottom: 8px solid #eae8e8;
+  padding-bottom: 15px;
+  font-family: Montserrat;
+}
+
+.h4_margin {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 10px;
+  text-align: center;
+}
+
