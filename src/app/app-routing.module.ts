@@ -10,6 +10,7 @@ import {HomeInfosComponent} from './energy-use/home-infos/home-infos.component';
 import {ResultComponent} from './energy-use/result/result.component';
 import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
+import {AboutusComponent} from './aboutus/aboutus.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'activities', component: ActivitiesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent},
+  {path: 'aboutus', component: AboutusComponent},
 ];
 
 @NgModule({
