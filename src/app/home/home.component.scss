@@ -19,12 +19,13 @@
 }
 
 .main_title {
-  border-style: solid;
+  border-style: hidden;
   padding: 7px 15px 12px 20px;
 }
 
 .small_title {
   border-bottom: 8px solid #eae8e8;
+  padding-top: 5px;
   padding-bottom: 15px;
   font-family: Montserrat;
 }
@@ -47,22 +48,22 @@ h2 {
 
 /*1rem = 16px*/
 h3 {
-  font-size: 0.5rem;
+  font-size: 1.0rem;
 }
 
 /*1rem = 16px*/
 h4 {
-  font-size: 0.5rem;
+  font-size: 1.0rem;
 }
 
 /*1rem = 16px*/
 h5 {
-  font-size: 0.5rem;
+  font-size: 1.0rem;
 }
 
 /*1rem = 16px*/
 h6 {
-  font-size: 0.5rem;
+  font-size: 1.0rem;
 }
 
 /*1rem = 16px*/
@@ -82,15 +83,19 @@ h6 {
   }
   /*1rem = 16px*/
   h4 {
-    font-size: 0.5rem;
+    font-size: 1.0rem;
   }
   /*1rem = 16px*/
   h5 {
-    font-size: 0.5rem;
+    font-size: 1.0rem;
   }
   /*1rem = 16px*/
   h6 {
-    font-size: 0.75rem;
+    font-size: 1.0rem;
+  }
+  .main_title {
+    border-style: solid;
+    padding: 7px 15px 12px 20px;
   }
   /*1rem = 16px*/
 }
@@ -120,6 +125,10 @@ h6 {
   h6 {
     font-size: 1.0rem;
   }
+  .main_title {
+    border-style: solid;
+    padding: 7px 15px 12px 20px;
+  }
   /*1rem = 16px*/
 }
 
@@ -148,6 +157,10 @@ h6 {
   h6 {
     font-size: 1.5rem;
   }
+  .main_title {
+    border-style: solid;
+    padding: 7px 15px 12px 20px;
+  }
   /*1rem = 16px*/
 }
 
@@ -175,6 +188,10 @@ h6 {
   /*1rem = 16px*/
   h6 {
     font-size: 1.0rem;
+  }
+  .main_title {
+    border-style: solid;
+    padding: 7px 15px 12px 20px;
   }
   /*1rem = 16px*/
 }
