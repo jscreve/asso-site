@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-$primary-color: #B71C1C;
+$primary-color: #FFA200;
 .primary-color {
   background-color: $primary-color !important;
 }
@@ -18,6 +18,11 @@ $dropdown-colors: (
 
 .btn-primary {
   background: $primary-color;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  background: $primary-color;
+  border-color: $primary-color;
 }
 
 .btn-primary {
