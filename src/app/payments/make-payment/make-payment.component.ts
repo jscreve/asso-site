@@ -31,7 +31,7 @@ export class MakePaymentComponent implements OnInit {
     });
     this.handler = StripeCheckout.configure({
       key: environment.stripeKey,
-      image: '/assets/images/logo/logo.jpeg',
+      image: '/assets/images/logo/logo.png',
       locale: 'auto',
       currency: 'eur',
       token: token => {

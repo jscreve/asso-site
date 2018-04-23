@@ -6,119 +6,121 @@
 </div>
 <section class="container-fluid">
   <div class="row">
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-xs-12">
       <div class="card card-cascade narrower">
         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)" class="form-horizontal">
           <fieldset>
             <h3 class="card-header primary-color white-text">Faire un don <i class="fa fa-eur"></i></h3>
-            <div class="md-form">
-              <i class="fa fa-user prefix"></i>
-              <input type="text"
-                     id="last_name"
-                     placeholder="Nom" formControlName="last_name">
-              <div
-                *ngIf="(myForm.controls['last_name'].touched || submitted) && myForm.controls['last_name'].errors?.required">
-                <div class="alert alert-danger">Le champ ne peut être vide</div>
-              </div>
-            </div>
-
-            <div class="md-form">
-              <i class="fa prefix"></i>
-              <input type="text"
-                     id="names"
-                     placeholder="Prénoms" formControlName="names">
-              <div
-                *ngIf="(myForm.controls['names'].touched || submitted) && myForm.controls['names'].errors?.required">
-                <div class="alert alert-danger">Le champ ne peut être vide</div>
-              </div>
-            </div>
-
-            <div class="md-form">
-              <i class="fa fa-address-card prefix"></i>
-              <input type="text"
-                     id="address"
-                     placeholder="Adresse" formControlName="address">
-              <div
-                *ngIf="(myForm.controls['address'].touched || submitted) && myForm.controls['address'].errors?.required">
-                <div class="alert alert-danger">Le champ ne peut être vide</div>
+            <div class="card-body">
+              <div class="md-form">
+                <i class="fa fa-user prefix"></i>
+                <input type="text"
+                       id="last_name"
+                       placeholder="Nom" formControlName="last_name">
+                <div
+                  *ngIf="(myForm.controls['last_name'].touched || submitted) && myForm.controls['last_name'].errors?.required">
+                  <div class="alert alert-danger">Le champ ne peut être vide</div>
+                </div>
               </div>
 
-            </div>
-
-            <div class="md-form">
-              <i class="fa prefix"></i>
-              <input type="text"
-                     id="postal_code"
-                     placeholder="Code postal" formControlName="postal_code">
-              <div
-                *ngIf="(myForm.controls['postal_code'].touched || submitted) && (myForm.controls['postal_code'].errors?.pattern || myForm.controls['postal_code'].errors?.required)">
-                <div class="alert alert-danger">Le code postal doit comporter 5 chiffres</div>
+              <div class="md-form">
+                <i class="fa prefix"></i>
+                <input type="text"
+                       id="names"
+                       placeholder="Prénoms" formControlName="names">
+                <div
+                  *ngIf="(myForm.controls['names'].touched || submitted) && myForm.controls['names'].errors?.required">
+                  <div class="alert alert-danger">Le champ ne peut être vide</div>
+                </div>
               </div>
-            </div>
 
-            <div class="md-form">
-              <i class="fa prefix"></i>
-              <input type="text"
-                     id="city"
-                     placeholder="Ville" formControlName="city">
-              <div
-                *ngIf="(myForm.controls['city'].touched || submitted) && myForm.controls['city'].errors?.required">
-                <div class="alert alert-danger">Le champ ne peut être vide</div>
-              </div>
-            </div>
+              <div class="md-form">
+                <i class="fa fa-address-card prefix"></i>
+                <input type="text"
+                       id="address"
+                       placeholder="Adresse" formControlName="address">
+                <div
+                  *ngIf="(myForm.controls['address'].touched || submitted) && myForm.controls['address'].errors?.required">
+                  <div class="alert alert-danger">Le champ ne peut être vide</div>
+                </div>
 
-            <div class="md-form">
-              <i class="fa fa-flag prefix"></i>
-              <input type="text"
-                     id="country"
-                     placeholder="Pays" formControlName="country">
-              <div
-                *ngIf="(myForm.controls['country'].touched || submitted) && myForm.controls['country'].errors?.required">
-                <div class="alert alert-danger">Le champ ne peut être vide</div>
               </div>
-            </div>
 
-            <div class="md-form">
-              <i class="fa fa-envelope prefix"></i>
-              <input type="email"
-                     id="email"
-                     placeholder="" formControlName="email">
-              <div
-                *ngIf="(myForm.controls['email'].touched || submitted) && myForm.controls['email'].errors?.email">
-                <div class="alert alert-danger">Email invalide</div>
+              <div class="md-form">
+                <i class="fa prefix"></i>
+                <input type="text"
+                       id="postal_code"
+                       placeholder="Code postal" formControlName="postal_code">
+                <div
+                  *ngIf="(myForm.controls['postal_code'].touched || submitted) && (myForm.controls['postal_code'].errors?.pattern || myForm.controls['postal_code'].errors?.required)">
+                  <div class="alert alert-danger">Le code postal doit comporter 5 chiffres</div>
+                </div>
               </div>
-            </div>
 
-            <div class="md-form">
-              <i class="fa fa-phone prefix"></i>
-              <input type="text"
-                     id="phone"
-                     placeholder="" formControlName="phone">
-              <div
-                *ngIf="(myForm.controls['phone'].touched || submitted) && myForm.controls['phone'].errors?.pattern">
-                <div class="alert alert-danger">Numéro invalide</div>
+              <div class="md-form">
+                <i class="fa prefix"></i>
+                <input type="text"
+                       id="city"
+                       placeholder="Ville" formControlName="city">
+                <div
+                  *ngIf="(myForm.controls['city'].touched || submitted) && myForm.controls['city'].errors?.required">
+                  <div class="alert alert-danger">Le champ ne peut être vide</div>
+                </div>
               </div>
-            </div>
 
-            <div class="md-form">
-              <i class="fa fa-money prefix"></i>
-              <input type="number"
-                     id="amount"
-                     placeholder="Montant (Eur)" formControlName="amount">
-              <div
-                *ngIf="(myForm.controls['amount'].touched || submitted) && myForm.controls['amount'].errors?.required">
-                <div class="alert alert-danger">Le champ ne peut être vide</div>
+              <div class="md-form">
+                <i class="fa fa-flag prefix"></i>
+                <input type="text"
+                       id="country"
+                       placeholder="Pays" formControlName="country">
+                <div
+                  *ngIf="(myForm.controls['country'].touched || submitted) && myForm.controls['country'].errors?.required">
+                  <div class="alert alert-danger">Le champ ne peut être vide</div>
+                </div>
               </div>
-            </div>
-            <!--- Buttons Block --->
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Soumettre</button>
+
+              <div class="md-form">
+                <i class="fa fa-envelope prefix"></i>
+                <input type="email"
+                       id="email"
+                       placeholder="" formControlName="email">
+                <div
+                  *ngIf="(myForm.controls['email'].touched || submitted) && myForm.controls['email'].errors?.email">
+                  <div class="alert alert-danger">Email invalide</div>
+                </div>
+              </div>
+
+              <div class="md-form">
+                <i class="fa fa-phone prefix"></i>
+                <input type="text"
+                       id="phone"
+                       placeholder="" formControlName="phone">
+                <div
+                  *ngIf="(myForm.controls['phone'].touched || submitted) && myForm.controls['phone'].errors?.pattern">
+                  <div class="alert alert-danger">Numéro invalide</div>
+                </div>
+              </div>
+
+              <div class="md-form">
+                <i class="fa fa-money prefix"></i>
+                <input type="number"
+                       id="amount"
+                       placeholder="Montant (Eur)" formControlName="amount">
+                <div
+                  *ngIf="(myForm.controls['amount'].touched || submitted) && myForm.controls['amount'].errors?.required">
+                  <div class="alert alert-danger">Le champ ne peut être vide</div>
+                </div>
+              </div>
+              <!--- Buttons Block --->
+              <div class="md-form" style="text-align: center">
+                <button type="submit" class="btn btn-primary">Soumettre</button>
+              </div>
             </div>
           </fieldset>
         </form>
       </div>
     </div>
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-xs-12">
       <div class="card card-cascade narrower">
         <img src="assets/images/eolienne.jpg" class="img-fluid">
       </div>

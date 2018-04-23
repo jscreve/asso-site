@@ -8,42 +8,44 @@
         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)" class="form-horizontal">
           <fieldset>
             <h3 class="card-header primary-color white-text">Connectez-vous</h3>
-            <div class="md-form">
-              <i class="fa fa-user prefix"></i>
-              <input type="text"
-                     id="username"
-                     placeholder="Utilisateur" formControlName="username">
-              <div
-                *ngIf="(myForm.controls['username'].touched || submitted) && myForm.controls['username'].errors?.required">
-                <div class="alert alert-danger">Le champ ne peut être vide</div>
+            <div class="card-body">
+              <div class="md-form">
+                <i class="fa fa-user prefix"></i>
+                <input type="text"
+                       id="username"
+                       placeholder="Utilisateur" formControlName="username">
+                <div
+                  *ngIf="(myForm.controls['username'].touched || submitted) && myForm.controls['username'].errors?.required">
+                  <div class="alert alert-danger">Le champ ne peut être vide</div>
+                </div>
               </div>
-            </div>
 
-            <div class="md-form">
-              <i class="fa prefix"></i>
-              <input type="password"
-                     id="password"
-                     placeholder="Mot de passe" formControlName="password">
-              <div
-                *ngIf="(myForm.controls['password'].touched || submitted) && myForm.controls['password'].errors?.required">
-                <div class="alert alert-danger">Le champ ne peut être vide</div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <!--- Buttons Block --->
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Connexion</button>
+              <div class="md-form">
+                <i class="fa prefix"></i>
+                <input type="password"
+                       id="password"
+                       placeholder="Mot de passe" formControlName="password">
+                <div
+                  *ngIf="(myForm.controls['password'].touched || submitted) && myForm.controls['password'].errors?.required">
+                  <div class="alert alert-danger">Le champ ne peut être vide</div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <!--- Buttons Block --->
-                <div class="form-group">
-                  <button type="button" class="btn btn-primary" (click)="logout()">Déconnexion</button>
+              <div class="row">
+                <div class="col-md-6">
+                  <!--- Buttons Block --->
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Connexion</button>
+                  </div>
                 </div>
-              </div>
-              <div *ngIf="!loginSuccess && submitted">
-                <div class="alert alert-danger">Echec de connexion</div>
+                <div class="col-md-6">
+                  <!--- Buttons Block --->
+                  <div class="form-group">
+                    <button type="button" class="btn btn-primary" (click)="logout()">Déconnexion</button>
+                  </div>
+                </div>
+                <div *ngIf="!loginSuccess && submitted">
+                  <div class="alert alert-danger">Echec de connexion</div>
+                </div>
               </div>
             </div>
           </fieldset>
