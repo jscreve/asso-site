@@ -14,6 +14,7 @@ export class ResultComponent implements OnInit {
 
   public electricResult: number;
   public gazResult: number;
+  public averageEnergy: number;
   private data: any;
   private dataModel: FormDataModel;
 
@@ -30,6 +31,7 @@ export class ResultComponent implements OnInit {
       value => {
         this.electricResult = value.electricEnergyUsage;
         this.gazResult = value.gazEnergyUsage;
+        this.averageEnergy = value.averageEnergy;
       },
       err => {
         console.log('Error occured.' + err);
