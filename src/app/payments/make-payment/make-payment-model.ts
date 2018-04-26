@@ -8,9 +8,16 @@ export class MakePaymentModel {
   public email: string;
   public phone: string;
   public amount: number;
+  public transactionType: string;
 }
 
-export class MakePaymentRessource {
+export class SimplePaymentRessource {
+  public email: string;
+  public amount: number;
+  public token: string;
+}
+
+export class PaymentRessource {
   public user: UserModelRessource;
   public amount: number;
   public token: string;
@@ -29,4 +36,9 @@ export class AddressModelRessource {
   public postalCode: string;
   public city: string;
   public country: string;
+}
+
+export enum TransactionType {
+  Don = 0,
+  Adhesion
 }

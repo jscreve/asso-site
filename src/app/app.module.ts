@@ -27,6 +27,7 @@ import {Interceptor} from './security/app.interceptor';
 import {AdminComponent} from './admin/admin.component';
 import {ReceiptService} from './services/receipt.service';
 import {AboutusComponent} from './aboutus/aboutus.component';
+import {MemberComponent} from './member/member.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {AboutusComponent} from './aboutus/aboutus.component';
     FeedCardComponent,
     LoginComponent,
     AdminComponent,
-    AboutusComponent
+    AboutusComponent,
+    MemberComponent
   ],
   imports: [
     BrowserModule,

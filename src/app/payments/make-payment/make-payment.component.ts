@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {PaymentService} from '../payment.service';
 import {environment} from '../../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AddressModelRessource, MakePaymentModel, MakePaymentRessource, UserModelRessource} from './make-payment-model';
+import {AddressModelRessource, MakePaymentModel, PaymentRessource, UserModelRessource} from './make-payment-model';
 
 @Component({
   selector: 'app-make-payment',
@@ -13,12 +13,17 @@ export class MakePaymentComponent implements OnInit {
   private handler: any;
   public myForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
-  public paymentRessource: MakePaymentRessource;
+  public paymentRessource: PaymentRessource;
+  public transactionType: string;
+  public errorMessage: string;
+  public successMessage: string;
 
   constructor(private _fb: FormBuilder, private paymentSvc: PaymentService) {
   }
+
   ngOnInit() {
     this.myForm = this._fb.group({
+      transactionType: ['don', [<any>Validators.required]],
       last_name: ['', [<any>Validators.required]],
       names: ['', [<any>Validators.required]],
       address: ['', [<any>Validators.required]],
@@ -36,21 +41,54 @@ export class MakePaymentComponent implements OnInit {
       currency: 'eur',
       token: token => {
         this.paymentRessource.token = token.id;
-        this.paymentSvc.processPayment(this.paymentRessource).subscribe(
-          value => {
-            console.log(value);
-          },
-          err => {
-            console.log('Error occured in payment.' + err);
-          }
-        );
+        if (this.transactionType === 'adhesion') {
+          this.paymentSvc.processNewMembershipPayment(this.paymentRessource).subscribe(
+            value => {
+              console.log(value);
+              this.successMessage = 'Succès !';
+              this.errorMessage = null;
+            },
+            err => {
+              this.successMessage = null;
+              this.errorMessage = err.error.message;
+              console.log('Error occured in payment.' + err);
+            }
+          );
+        } else {
+          this.paymentSvc.processPayment(this.paymentRessource).subscribe(
+            value => {
+              console.log(value);
+              this.successMessage = 'Succès !';
+            },
+            err => {
+              this.errorMessage = err.error.message;
+              console.log('Error occured in payment.' + err);
+            }
+          );
+        }
+      }
+    });
+
+    // update amount based on transaction type
+    this.myForm.controls['transactionType'].valueChanges.subscribe(transactionType => {
+      if (transactionType === 'don') {
+        this.myForm.controls['amount'].reset();
+        this.myForm.controls['amount'].enable();
+      } else {
+        this.myForm.controls['amount'].setValue(environment.adhesion);
+        this.myForm.controls['amount'].disable();
       }
     });
   }
 
   save(model: MakePaymentModel, isValid: boolean) {
     this.submitted = true; // set form submit to true
-    this.paymentRessource = new MakePaymentRessource();
+
+    this.transactionType = model.transactionType;
+    this.paymentRessource = new PaymentRessource();
+    if (this.transactionType === 'adhesion') {
+      model.amount = environment.adhesion;
+    }
     this.paymentRessource.amount = model.amount * 100;
     this.paymentRessource.user = new UserModelRessource();
     this.paymentRessource.user.last_name = model.last_name;
@@ -62,7 +100,6 @@ export class MakePaymentComponent implements OnInit {
     this.paymentRessource.user.address.postalCode = model.postal_code;
     this.paymentRessource.user.address.city = model.city;
     this.paymentRessource.user.address.country = model.country;
-
     // check if model is valid
     // if valid, call API to save customer
     console.log(model, isValid);
@@ -74,7 +111,7 @@ export class MakePaymentComponent implements OnInit {
 
   handlePayment() {
     this.handler.open({
-      name: 'Don',
+      name: 'Don / adhésion',
       excerpt: 'Faire un paiement',
       amount: this.paymentRessource.amount,
       email: this.paymentRessource.user.email

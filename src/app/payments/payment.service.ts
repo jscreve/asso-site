@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {MakePaymentRessource} from './make-payment/make-payment-model';
+import {PaymentRessource, SimplePaymentRessource} from './make-payment/make-payment-model';
 
 const API_URL = environment.apiUrl;
 
@@ -13,7 +13,15 @@ export class PaymentService {
   constructor(@Inject(HttpClient) private httpClient: HttpClient) {
   }
 
-  processPayment(payment: MakePaymentRessource) {
+  processPayment(payment: PaymentRessource) {
     return this.httpClient.post<any>(API_URL + '/payment/charge', payment);
+  }
+
+  processPaymentExistingMember(payment: SimplePaymentRessource) {
+    return this.httpClient.post<any>(API_URL + '/payment/charge/existingmember', payment);
+  }
+
+  processNewMembershipPayment(payment: PaymentRessource) {
+    return this.httpClient.post<any>(API_URL + '/payment/charge/newmember', payment);
   }
 }

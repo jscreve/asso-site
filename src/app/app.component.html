@@ -21,13 +21,16 @@
           <a class="nav-link waves-effect waves-light" routerLink="/home-energy-use">Votre consommation</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light disabled" routerLink="/money">Dons</a>
+          <a class="nav-link waves-effect waves-light disabled" routerLink="/money">Dons / adhésion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-effect waves-light disabled" routerLink="/member">Adhérents</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light" routerLink="/contacts">Contacts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" routerLink="/login">Connexion</a>
+          <a class="nav-link waves-effect waves-light" routerLink="/login">Admin</a>
         </li>
         <li class="nav-item" *ngIf="(loggedUser$ | async) as loggedUser">
           <a class="nav-link waves-effect waves-light" routerLink="/admin">Menu administration</a>

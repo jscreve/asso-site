@@ -1,4 +1,5 @@
 export const environment = {
+  adhesion: 30,
   production: true,
   stripeKey: 'pk_test_rEdOkXSnUj5YrTZjR4aZWJUV',
   apiUrl: 'https://watt4all.org/server',
