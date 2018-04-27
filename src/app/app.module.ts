@@ -11,23 +11,23 @@ import {ContactsComponent} from './contacts/contacts.component';
 import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {PaymentModule} from './payments/payment/payment.module';
 import {ActivitiesComponent} from './activities/activities.component';
-import {EnergyService} from './services/energy.service';
-import {EmailService} from './services/email.service';
+import {EnergyService} from './energy-use/result/energy.service';
+import {EmailService} from './contacts/email.service';
 import {ElectricityComponent} from './energy-use/electricity/electricity.component';
 import {GazComponent} from './energy-use/gaz/gaz.component';
 import {FormDataService} from './energy-use/data/form-data.service';
 import {HomeInfosComponent} from './energy-use/home-infos/home-infos.component';
 import {ResultComponent} from './energy-use/result/result.component';
 import {FeedCardComponent} from './activities/feed-card/feed-card.component';
-import {FeedService} from './services/feed-service.service';
+import {FeedService} from './activities/feed-service.service';
 import {MyCommonModule} from './my-common.module';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from './services/auth.service';
 import {Interceptor} from './security/app.interceptor';
 import {AdminComponent} from './admin/admin.component';
-import {ReceiptService} from './services/receipt.service';
 import {AboutusComponent} from './aboutus/aboutus.component';
 import {MemberComponent} from './member/member.component';
+import {MemberService} from './admin/member.service';
 
 
 @NgModule({
@@ -59,10 +59,10 @@ import {MemberComponent} from './member/member.component';
     FormsModule
   ],
   providers: [EnergyService,
-    ReceiptService,
     AuthService,
     FormDataService,
     EmailService,
+    MemberService,
     FeedService,
     {
       provide: HTTP_INTERCEPTORS,

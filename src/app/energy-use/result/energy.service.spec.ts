@@ -1,10 +1,10 @@
 import {inject, TestBed} from '@angular/core/testing';
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {AppModule} from '../app.module';
+import {AppModule} from '../../app.module';
 import {APP_BASE_HREF} from '@angular/common';
 import {EnergyService} from './energy.service';
-import {EnergyUseDataModel} from '../energy-use/data/energy-use-data-model';
+import {EnergyUseDataModel} from '../data/energy-use-data-model';
 
 
 describe('EnergyService', () => {

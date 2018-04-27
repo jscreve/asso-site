@@ -30,11 +30,11 @@ $dropdown-colors: (
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: lighten($primary-color, 30%) !important;
+  background-color: lighten($primary-color, 10%) !important;
 }
 
 .btn-primary.active {
-  background-color: darken($primary-color, 30%) !important;
+  background-color: darken($primary-color, 10%) !important;
 }
 
 .all-page-header {
@@ -49,5 +49,11 @@ $dropdown-colors: (
   border-bottom: 2px solid #eae8e8;
   border-top: 2px solid #eae8e8;
   text-align: center;
-  font-family: Montserrat;
+}
+
+body {
+  padding-top: 80px;
+  font-size: 1em !important;
+  color: #000 !important;
+  font-family: 'Exo 2', sans-serif !important;
 }

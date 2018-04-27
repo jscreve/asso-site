@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
-import {Feed} from '../activities/feed-card/model/feed';
+import {Feed} from './feed-card/model/feed';
 import {environment} from '../../environments/environment';
 
 @Injectable()

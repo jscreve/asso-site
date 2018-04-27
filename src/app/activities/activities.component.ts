@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FeedService} from '../services/feed-service.service';
+import {FeedService} from './feed-service.service';
 import {environment} from '../../environments/environment';
 import {FeedEntry} from './feed-card/model/feed-entry';
 

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {HttpClient} from '@angular/common/http';
-import {EmailService} from '../services/email.service';
+import {EmailService} from './email.service';
 import {EmailDataModel} from './data/email-data-model';
 
 @Component({

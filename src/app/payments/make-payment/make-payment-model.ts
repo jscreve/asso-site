@@ -23,6 +23,13 @@ export class PaymentRessource {
   public token: string;
 }
 
+export class OutputPaymentRessource {
+  public user: UserModelRessource;
+  public amount: number;
+  public paymentDate: string;
+  private transactionType: string;
+}
+
 export class UserModelRessource {
   public last_name: string;
   public names: string;

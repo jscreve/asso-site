@@ -3,7 +3,7 @@ import {FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 import {FormDataService} from '../data/form-data.service';
 import {FormDataModel} from '../data/form-data-model';
-import {EnergyService} from '../../services/energy.service';
+import {EnergyService} from './energy.service';
 
 @Component({
   selector: 'app-result',
