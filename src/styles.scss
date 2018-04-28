@@ -20,6 +20,27 @@ $dropdown-colors: (
   background: $primary-color;
 }
 
+.dropdown-primary {
+  // background: $primary-color;
+}
+
+.navbar .dropdown-menu a {
+  //color: white !important;
+}
+
+.dropdown {
+  .dropdown-menu {
+    .dropdown-item {
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: lighten($primary-color, 10%) !important;
+
+      }
+    }
+  }
+}
+
 .btn-primary.disabled, .btn-primary:disabled {
   background: $primary-color;
   border-color: $primary-color;

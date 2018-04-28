@@ -28,6 +28,7 @@ import {AdminComponent} from './admin/admin.component';
 import {AboutusComponent} from './aboutus/aboutus.component';
 import {MemberComponent} from './member/member.component';
 import {MemberService} from './admin/member.service';
+import {NgxPageScrollModule} from 'ngx-page-scroll';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {MemberService} from './admin/member.service';
     PaymentModule,
     MyCommonModule,
     HttpClientJsonpModule,
-    FormsModule
+    FormsModule,
+    NgxPageScrollModule
   ],
   providers: [EnergyService,
     AuthService,

@@ -11,11 +11,21 @@
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light" routerLink="/home">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" routerLink="/aboutus">Qui sommes-nous</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" routerLink="/activities">Notre blog</a>
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Qui sommes-nous ?<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a pageScroll class="dropdown-item waves-light" mdbWavesEffect href="#asso" routerLink="/home">Notre
+              association</a>
+            <a pageScroll class="dropdown-item waves-light" mdbWavesEffect href="#projects" routerLink="/home">Nos
+              projets</a>
+            <a pageScroll class="dropdown-item waves-light" mdbWavesEffect href="#partners" routerLink="/home">Nos
+              partenaires</a>
+            <a pageScroll pageScrollDuration="0" class="dropdown-item waves-light" mdbWavesEffect href="#top"
+               routerLink="/aboutus">Notre projet en détail</a>
+            <a pageScroll pageScrollDuration="0" class="dropdown-item waves-light" mdbWavesEffect href="#top"
+               routerLink="/activities">Notre blog</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light" routerLink="/home-energy-use">Votre consommation</a>

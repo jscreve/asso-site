@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {Observable} from 'rxjs/Observable';
+import {PageScrollConfig} from 'ngx-page-scroll';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public loggedUser$: Observable<boolean>;
 
   constructor(private authService: AuthService) {
+    PageScrollConfig.defaultScrollOffset = 70;
   }
 
   ngOnInit() {
