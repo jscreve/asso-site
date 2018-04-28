@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService) {
     PageScrollConfig.defaultScrollOffset = 70;
+    PageScrollConfig.defaultDuration = 250;
   }
 
   ngOnInit() {
