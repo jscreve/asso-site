@@ -8,17 +8,19 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 const API_URL = environment.apiUrl;
 const TOKEN_KEY = 'AuthToken';
 const EXPIRE_KEY = 'ExpiresAt';
+const USERNAME_KEY = 'Username';
 
 @Injectable()
 export class AuthService {
 
-  private subject: BehaviorSubject<boolean>;
+  private loggedSubject: BehaviorSubject<boolean>;
+  private loggedUser: BehaviorSubject<string>;
 
   constructor(private http: HttpClient) {
   }
 
   // get token
-  attemptAuth(ussername: string, password: string): Observable<any> {
+  public attemptAuth(ussername: string, password: string): Observable<any> {
     const credentials = {username: ussername, password: password};
     console.log('attempAuth ::');
     return this.http.post(API_URL + '/users/generate-token', credentials);
@@ -29,11 +31,15 @@ export class AuthService {
     return this.getExpiration() != null && moment().isBefore(this.getExpiration());
   }
 
-  isLoggedOut() {
+  public getLoggedUser() {
+    return window.sessionStorage.getItem(USERNAME_KEY);
+  }
+
+  public isLoggedOut() {
     return !this.isLoggedIn();
   }
 
-  getExpiration() {
+  public getExpiration() {
     const expiresAt = moment(this.getTokenExpiration(), 'YYYY-MM-DD HH:mm:ss');
     if (expiresAt == null) {
       return null;
@@ -42,29 +48,38 @@ export class AuthService {
     }
   }
 
-  sendLoggedStatus(logged: boolean) {
-    this.subject.next(logged);
+  public sendLoggedStatus(logged: boolean, username: string) {
+    this.loggedSubject.next(logged);
+    this.loggedUser.next(username);
   }
 
-  subscribeLoggedStatus(): Observable<boolean> {
+  public subscribeLoggedStatus(): Observable<boolean> {
     // init first value by checking expiration date
-    this.subject = new BehaviorSubject<boolean>(this.isLoggedIn());
-    return this.subject.asObservable();
+    this.loggedSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+    return this.loggedSubject.asObservable();
+  }
+
+  public subscribeLoggedUser(): Observable<string> {
+    // init first value by checking expiration date
+    this.loggedUser = new BehaviorSubject<string>(this.getLoggedUser());
+    return this.loggedUser.asObservable();
   }
 
   // session storage
   public signOut() {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.removeItem(EXPIRE_KEY);
+    window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.clear();
-    this.sendLoggedStatus(false);
+    this.sendLoggedStatus(false, '');
   }
 
-  public saveToken(token: string, expiresAt: string) {
+  public saveToken(token: string, expiresAt: string, username: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
     window.sessionStorage.setItem(EXPIRE_KEY, expiresAt);
-    this.sendLoggedStatus(true);
+    window.sessionStorage.setItem(USERNAME_KEY, username);
+    this.sendLoggedStatus(true, username);
   }
 
   public getToken(): string {

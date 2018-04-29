@@ -40,10 +40,22 @@
           <a class="nav-link waves-effect waves-light" routerLink="/contacts">Contacts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" routerLink="/login">Admin</a>
+          <a class="nav-link waves-effect waves-light" routerLink="/login">Connexion</a>
         </li>
-        <li class="nav-item" *ngIf="(loggedUser$ | async) as loggedUser">
-          <a class="nav-link waves-effect waves-light" routerLink="/admin">Menu administration</a>
+        <li class="nav-item" *ngIf="{isLoggedUser: isLoggedUser$ | async, loggedUser: loggedUser$ | async} as values">
+          <a class="nav-link waves-effect waves-light" routerLink="/admin" *ngIf="values.loggedUser === 'admin'">Menu
+            administration</a>
+        </li>
+        <li class="nav-item dropdown" dropdown
+            *ngIf="{isLoggedUser: isLoggedUser$ | async, loggedUser: loggedUser$ | async} as values">
+          <a dropdownToggle mdbWavesEffect type="" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <span class="caret"></span><i class="fa fa-user"></i></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item disabled" mdbWavesEffect>{{values.loggedUser}}</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="logout()">Déconnexion</a>
+          </div>
+
         </li>
       </ul>
 

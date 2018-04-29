@@ -10,7 +10,8 @@ import {PageScrollConfig} from 'ngx-page-scroll';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
-  public loggedUser$: Observable<boolean>;
+  public isLoggedUser$: Observable<boolean>;
+  public loggedUser$: Observable<string>;
 
   constructor(private authService: AuthService) {
     PageScrollConfig.defaultScrollOffset = 70;
@@ -19,16 +20,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // init log status
-    /*if (this.authService.isLoggedIn()) {
-      this.loggedUser = true;
-    } else {
-      this.loggedUser = false;
-    }*/
-    // subscribe to log status change
-    this.loggedUser$ = this.authService.subscribeLoggedStatus();
+    this.isLoggedUser$ = this.authService.subscribeLoggedStatus();
+    this.loggedUser$ = this.authService.subscribeLoggedUser();
   }
 
   ngOnDestroy() {
     // Only need to unsubscribe if its a multi event Observable
+  }
+
+  logout() {
+    this.authService.signOut();
   }
 }
