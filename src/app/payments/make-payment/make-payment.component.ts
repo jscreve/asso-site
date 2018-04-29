@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {PaymentService} from '../payment.service';
 import {environment} from '../../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -17,6 +17,8 @@ export class MakePaymentComponent implements OnInit {
   public transactionType: string;
   public errorMessage: string;
   public successMessage: string;
+
+  @ViewChild('submit') button: ElementRef;
 
   constructor(private _fb: FormBuilder, private paymentSvc: PaymentService) {
   }
@@ -47,10 +49,12 @@ export class MakePaymentComponent implements OnInit {
               console.log(value);
               this.successMessage = 'Succès !';
               this.errorMessage = null;
+              this.button.nativeElement.blur(); // bug
             },
             err => {
               this.successMessage = null;
               this.errorMessage = err.error.message;
+              this.button.nativeElement.blur(); // bug
               console.log('Error occured in payment.' + err);
             }
           );
@@ -59,9 +63,11 @@ export class MakePaymentComponent implements OnInit {
             value => {
               console.log(value);
               this.successMessage = 'Succès !';
+              this.button.nativeElement.blur(); // bug
             },
             err => {
               this.errorMessage = err.error.message;
+              this.button.nativeElement.blur(); // bug
               console.log('Error occured in payment.' + err);
             }
           );
@@ -83,6 +89,9 @@ export class MakePaymentComponent implements OnInit {
 
   save(model: MakePaymentModel, isValid: boolean) {
     this.submitted = true; // set form submit to true
+
+    this.errorMessage = '';
+    this.successMessage = '';
 
     this.transactionType = model.transactionType;
     this.paymentRessource = new PaymentRessource();

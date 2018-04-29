@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {SimplePaymentRessource} from '../payments/make-payment/make-payment-model';
 import {environment} from '../../environments/environment';
 import {PaymentService} from '../payments/payment.service';
@@ -17,6 +17,8 @@ export class MemberComponent implements OnInit {
   public paymentRessource: SimplePaymentRessource;
   public errorMessage: string;
   public successMessage: string;
+
+  @ViewChild('submit') button: ElementRef;
 
   constructor(private _fb: FormBuilder, private paymentSvc: PaymentService) {
   }
@@ -38,11 +40,13 @@ export class MemberComponent implements OnInit {
             console.log(value);
             this.successMessage = 'Succès !';
             this.errorMessage = null;
+            this.button.nativeElement.blur(); // bug
           },
           err => {
             console.log('Error occured in payment.' + err);
             this.errorMessage = err.error.message;
             this.successMessage = null;
+            this.button.nativeElement.blur(); // bug
           }
         );
       }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -23,7 +23,10 @@ export class ContactsComponent implements OnInit {
   public successMessage: string;
   private data: any;
 
-  constructor(private _fb: FormBuilder, private _http: HttpClient, private _emailService: EmailService) {
+  @ViewChild('submit') button: ElementRef;
+
+  constructor(private _fb: FormBuilder, private _http: HttpClient, private _emailService: EmailService,
+              private el: ElementRef) {
   } // form builder simplify form initialization
 
   ngOnInit() {
@@ -38,6 +41,8 @@ export class ContactsComponent implements OnInit {
 
   save(model: any, isValid: boolean) {
     this.submitted = true;
+    this.errorMessage = '';
+    this.successMessage = '';
     console.log(model, isValid);
     this.sendMail(model);
   }
@@ -47,10 +52,12 @@ export class ContactsComponent implements OnInit {
     return this.data.subscribe(
       value => {
         this.successMessage = 'Message envoyé !';
+        this.button.nativeElement.blur(); // bug
       },
       err => {
         console.log('Error occured.' + err);
         this.errorMessage = 'Erreur d\'envoi';
+        this.button.nativeElement.blur(); // bug
       }
     );
     /*const urlSearchParams = new URLSearchParams(value);
