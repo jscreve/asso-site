@@ -19,6 +19,8 @@ export class ContactsComponent implements OnInit {
   public myContactForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   // public _contactUrl = 'https://enr-solidr.000webhostapp.com/mail.php';
+  public errorMessage: string;
+  public successMessage: string;
   private data: any;
 
   constructor(private _fb: FormBuilder, private _http: HttpClient, private _emailService: EmailService) {
@@ -44,10 +46,11 @@ export class ContactsComponent implements OnInit {
     this.data = this._emailService.create(email);
     return this.data.subscribe(
       value => {
-        console.log('Email sent.');
+        this.successMessage = 'Message envoyé !';
       },
       err => {
         console.log('Error occured.' + err);
+        this.errorMessage = 'Erreur d\'envoi';
       }
     );
     /*const urlSearchParams = new URLSearchParams(value);
