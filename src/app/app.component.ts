@@ -12,6 +12,7 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
   public isLoggedUser$: Observable<boolean>;
   public loggedUser$: Observable<string>;
+  public userRoles$: Observable<string[]>;
 
   constructor(private authService: AuthService) {
     PageScrollConfig.defaultScrollOffset = 70;
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // init log status
     this.isLoggedUser$ = this.authService.subscribeLoggedStatus();
     this.loggedUser$ = this.authService.subscribeLoggedUser();
+    this.userRoles$ = this.authService.subscribeUserRoles();
   }
 
   ngOnDestroy() {

@@ -16,6 +16,7 @@ export class AuthService {
 
   private loggedSubject: BehaviorSubject<boolean>;
   private loggedUser: BehaviorSubject<string>;
+  private userRoles: BehaviorSubject<string[]>;
 
   constructor(private http: HttpClient) {
   }
@@ -49,9 +50,10 @@ export class AuthService {
     }
   }
 
-  public sendLoggedStatus(logged: boolean, username: string) {
+  public sendLoggedStatus(logged: boolean, username: string, roles: string[]) {
     this.loggedSubject.next(logged);
     this.loggedUser.next(username);
+    this.userRoles.next(roles);
   }
 
   public subscribeLoggedStatus(): Observable<boolean> {
@@ -66,6 +68,12 @@ export class AuthService {
     return this.loggedUser.asObservable();
   }
 
+  public subscribeUserRoles(): Observable<string[]> {
+    // init first value by checking expiration date
+    this.userRoles = new BehaviorSubject<string[]>(this.getRoles());
+    return this.userRoles.asObservable();
+  }
+
   // session storage
   public signOut() {
     window.sessionStorage.removeItem(TOKEN_KEY);
@@ -73,7 +81,7 @@ export class AuthService {
     window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.removeItem(ROLES_KEY);
     window.sessionStorage.clear();
-    this.sendLoggedStatus(false, '');
+    this.sendLoggedStatus(false, '', []);
   }
 
   public saveToken(token: string, expiresAt: string, username: string, authorities: string[]) {
@@ -82,7 +90,7 @@ export class AuthService {
     window.sessionStorage.setItem(EXPIRE_KEY, expiresAt);
     window.sessionStorage.setItem(USERNAME_KEY, username);
     window.sessionStorage.setItem(ROLES_KEY, authorities.join(','));
-    this.sendLoggedStatus(true, username);
+    this.sendLoggedStatus(true, username, authorities);
   }
 
   public getToken(): string {
@@ -90,7 +98,11 @@ export class AuthService {
   }
 
   public getRoles(): string[] {
-    return window.sessionStorage.getItem(ROLES_KEY).split(',');
+    if (window.sessionStorage.getItem(ROLES_KEY) != null) {
+      return window.sessionStorage.getItem(ROLES_KEY).split(',');
+    } else {
+      return [];
+    }
   }
 
   public getTokenExpiration(): string {
