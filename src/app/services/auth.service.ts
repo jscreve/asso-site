@@ -9,6 +9,7 @@ const API_URL = environment.apiUrl;
 const TOKEN_KEY = 'AuthToken';
 const EXPIRE_KEY = 'ExpiresAt';
 const USERNAME_KEY = 'Username';
+const ROLES_KEY = 'Authorities';
 
 @Injectable()
 export class AuthService {
@@ -70,20 +71,26 @@ export class AuthService {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.removeItem(EXPIRE_KEY);
     window.sessionStorage.removeItem(USERNAME_KEY);
+    window.sessionStorage.removeItem(ROLES_KEY);
     window.sessionStorage.clear();
     this.sendLoggedStatus(false, '');
   }
 
-  public saveToken(token: string, expiresAt: string, username: string) {
+  public saveToken(token: string, expiresAt: string, username: string, authorities: string[]) {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
     window.sessionStorage.setItem(EXPIRE_KEY, expiresAt);
     window.sessionStorage.setItem(USERNAME_KEY, username);
+    window.sessionStorage.setItem(ROLES_KEY, authorities.join(','));
     this.sendLoggedStatus(true, username);
   }
 
   public getToken(): string {
     return window.sessionStorage.getItem(TOKEN_KEY);
+  }
+
+  public getRoles(): string[] {
+    return window.sessionStorage.getItem(ROLES_KEY).split(',');
   }
 
   public getTokenExpiration(): string {

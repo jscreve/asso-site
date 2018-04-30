@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     if (isValid) {
       this.authService.attemptAuth(model.username, model.password).subscribe(
         data => {
-          this.authService.saveToken(data.token, data.expiresAt, model.username);
+          this.authService.saveToken(data.token, data.expiresAt, model.username, data.authorities);
           this.loginSuccess = true;
           this._router.navigate(['/home']);
         },
