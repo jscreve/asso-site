@@ -3,6 +3,7 @@ import {PaymentService} from '../payment.service';
 import {environment} from '../../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AddressModelRessource, MakePaymentModel, PaymentRessource, UserModelRessource} from './make-payment-model';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-make-payment',
@@ -20,12 +21,14 @@ export class MakePaymentComponent implements OnInit {
 
   @ViewChild('submit') button: ElementRef;
 
-  constructor(private _fb: FormBuilder, private paymentSvc: PaymentService) {
+  constructor(private _fb: FormBuilder, private paymentSvc: PaymentService, private userService: UserService) {
   }
 
   ngOnInit() {
     this.myForm = this._fb.group({
       transactionType: ['don', [<any>Validators.required]],
+      username: ['', []],
+      password: ['', []],
       last_name: ['', [<any>Validators.required]],
       names: ['', [<any>Validators.required]],
       address: ['', [<any>Validators.required]],
@@ -36,6 +39,18 @@ export class MakePaymentComponent implements OnInit {
       phone: ['', [<any>Validators.pattern('[0-9]{10}')]],
       amount: ['', [<any>Validators.required]]
     });
+    this.myForm.get('transactionType').valueChanges.subscribe(
+      (transactionType: string) => {
+        if (transactionType === 'don') {
+          this.myForm.get('username').setValidators([]);
+          this.myForm.get('password').setValidators([]);
+        } else {
+          this.myForm.get('username').setValidators([Validators.required]);
+          this.myForm.get('password').setValidators([Validators.required]);
+        }
+      }
+    );
+
     this.handler = StripeCheckout.configure({
       key: environment.stripeKey,
       image: '/assets/images/logo/logo.png',
@@ -44,20 +59,17 @@ export class MakePaymentComponent implements OnInit {
       token: token => {
         this.paymentRessource.token = token.id;
         if (this.transactionType === 'adhesion') {
-          this.paymentSvc.processNewMembershipPayment(this.paymentRessource).subscribe(
+          this.paymentSvc.processPaymentAndSignUp(this.paymentRessource).subscribe(
             value => {
               console.log(value);
               this.successMessage = 'Succès !';
-              this.errorMessage = null;
               this.button.nativeElement.blur(); // bug
             },
             err => {
-              this.successMessage = null;
               this.errorMessage = err.error.message;
               this.button.nativeElement.blur(); // bug
               console.log('Error occured in payment.' + err);
-            }
-          );
+            });
         } else {
           this.paymentSvc.processPayment(this.paymentRessource).subscribe(
             value => {
@@ -95,10 +107,6 @@ export class MakePaymentComponent implements OnInit {
 
     this.transactionType = model.transactionType;
     this.paymentRessource = new PaymentRessource();
-    if (this.transactionType === 'adhesion') {
-      model.amount = environment.adhesion;
-    }
-    this.paymentRessource.amount = model.amount * 100;
     this.paymentRessource.user = new UserModelRessource();
     this.paymentRessource.user.last_name = model.last_name;
     this.paymentRessource.user.names = model.names;
@@ -109,6 +117,14 @@ export class MakePaymentComponent implements OnInit {
     this.paymentRessource.user.address.postalCode = model.postal_code;
     this.paymentRessource.user.address.city = model.city;
     this.paymentRessource.user.address.country = model.country;
+
+    if (this.transactionType === 'adhesion') {
+      this.paymentRessource.amount = environment.adhesion * 100;
+      this.paymentRessource.username = model.username;
+      this.paymentRessource.password = model.password;
+    } else {
+      this.paymentRessource.amount = model.amount * 100;
+    }
     // check if model is valid
     // if valid, call API to save customer
     console.log(model, isValid);
@@ -120,7 +136,7 @@ export class MakePaymentComponent implements OnInit {
 
   handlePayment() {
     this.handler.open({
-      name: 'Don / adhésion',
+      name: 'Don / Adhésion',
       excerpt: 'Faire un paiement',
       amount: this.paymentRessource.amount,
       email: this.paymentRessource.user.email

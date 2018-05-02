@@ -1,4 +1,6 @@
 export class MakePaymentModel {
+  public username: string;
+  public password: string;
   public last_name: string;
   public names: string;
   public address: string;
@@ -21,6 +23,8 @@ export class PaymentRessource {
   public user: UserModelRessource;
   public amount: number;
   public token: string;
+  public username: string;
+  public password: string;
 }
 
 export class OutputPaymentRessource {
@@ -45,7 +49,3 @@ export class AddressModelRessource {
   public country: string;
 }
 
-export enum TransactionType {
-  Don = 0,
-  Adhesion
-}

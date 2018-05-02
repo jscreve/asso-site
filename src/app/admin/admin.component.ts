@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PaymentService} from '../payments/payment.service';
-import {MemberService} from './member.service';
 import {OutputPaymentRessource} from '../payments/make-payment/make-payment-model';
-import {MemberResource} from './member.resource.component';
+import {MemberResource} from '../resources/member.resource.component';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -16,14 +16,14 @@ export class AdminComponent implements OnInit {
   public transactions: OutputPaymentRessource[];
 
   constructor(private _paymentService: PaymentService,
-              private _memberService: MemberService) {
+              private _userService: UserService) {
   }
 
   ngOnInit() {
   }
 
   public getMembers() {
-    this._memberService.getMembers().subscribe(data => {
+    this._userService.getMembers().subscribe(data => {
       console.log(data);
       this.members = data;
     }, error => {

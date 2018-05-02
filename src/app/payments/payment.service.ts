@@ -15,12 +15,12 @@ export class PaymentService {
     return this.httpClient.post<any>(API_URL + '/payment/charge', payment);
   }
 
-  public processPaymentExistingMember(payment: SimplePaymentRessource) {
-    return this.httpClient.post<any>(API_URL + '/payment/charge/existingmember', payment);
+  public processPaymentAndSignUp(payment: PaymentRessource) {
+    return this.httpClient.post<any>(API_URL + '/payment/charge/newmember', payment);
   }
 
-  public processNewMembershipPayment(payment: PaymentRessource) {
-    return this.httpClient.post<any>(API_URL + '/payment/charge/newmember', payment);
+  public processPaymentExistingMember(payment: SimplePaymentRessource) {
+    return this.httpClient.post<any>(API_URL + '/payment/charge/member', payment);
   }
 
   public getPayments() {

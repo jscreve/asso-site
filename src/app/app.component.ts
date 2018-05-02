@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from './services/auth.service';
 import {Observable} from 'rxjs/Observable';
 import {PageScrollConfig} from 'ngx-page-scroll';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',

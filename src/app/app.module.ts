@@ -22,13 +22,13 @@ import {FeedCardComponent} from './activities/feed-card/feed-card.component';
 import {FeedService} from './activities/feed-service.service';
 import {MyCommonModule} from './my-common.module';
 import {LoginComponent} from './login/login.component';
-import {AuthService} from './services/auth.service';
 import {Interceptor} from './security/app.interceptor';
 import {AdminComponent} from './admin/admin.component';
 import {AboutusComponent} from './aboutus/aboutus.component';
 import {MemberComponent} from './member/member.component';
-import {MemberService} from './admin/member.service';
 import {NgxPageScrollModule} from 'ngx-page-scroll';
+import {AuthService} from './services/auth.service';
+import {UserService} from './services/user.service';
 
 
 @NgModule({
@@ -61,10 +61,10 @@ import {NgxPageScrollModule} from 'ngx-page-scroll';
     NgxPageScrollModule
   ],
   providers: [EnergyService,
+    UserService,
     AuthService,
     FormDataService,
     EmailService,
-    MemberService,
     FeedService,
     {
       provide: HTTP_INTERCEPTORS,
