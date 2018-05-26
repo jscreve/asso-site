@@ -31,10 +31,12 @@
           <a class="nav-link waves-effect waves-light" routerLink="/home-energy-use">Votre consommation</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light disabled" routerLink="/money">Dons / adhésion</a>
+          <a class="nav-link waves-effect waves-light" routerLink="/money">Dons / adhésion</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link waves-effect waves-light disabled" routerLink="/member">Adhérents</a>
+        <li class="nav-item"
+            *ngIf="{isLoggedUser: isLoggedUser$ | async, loggedUser: loggedUser$ | async, userRoles: userRoles$ | async} as values">
+          <a class="nav-link waves-effect waves-light" routerLink="/member"
+             *ngIf="values.userRoles.indexOf('ROLE_MEMBER') !== -1">Adhérents</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light" routerLink="/contacts">Contacts</a>
@@ -53,7 +55,7 @@
           <a dropdownToggle mdbWavesEffect type="" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             <span class="caret"></span><i class="fa fa-user"></i></a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item disabled" mdbWavesEffect>{{values.loggedUser}}</a>
+            <a class="dropdown-item" routerLink="/member" mdbWavesEffect>{{values.loggedUser}}</a>
             <div class="divider dropdown-divider"></div>
             <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="logout()">Déconnexion</a>
           </div>

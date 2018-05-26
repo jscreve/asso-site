@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {SignUpRessource} from '../resources/signup-model';
 import {MemberResource} from '../resources/member.resource.component';
+import {MemberResourceUpdate} from '../resources/member.resource.update.component';
 
 const API_URL = environment.apiUrl;
 const TOKEN_KEY = 'AuthToken';
@@ -32,7 +33,17 @@ export class UserService {
     return this.http.delete(API_URL + '/members/remove/' + username);
   }
 
-  public getMembers(): Observable<MemberResource[]> {
-    return this.http.get<MemberResource[]>(API_URL + '/members/fetch');
+  public getMembersAndPayments(): Observable<MemberResource[]> {
+    return this.http.get<MemberResource[]>(API_URL + '/members/fetchAllMemberAndPayments');
+  }
+
+  public get(): Observable<MemberResource> {
+    console.log('get user infos::');
+    return this.http.get<MemberResource>(API_URL + '/members/fetch');
+  }
+
+  public update(resource: MemberResourceUpdate): Observable<any> {
+    console.log('update user infos::');
+    return this.http.post(API_URL + '/members/update', resource);
   }
 }

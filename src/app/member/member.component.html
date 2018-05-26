@@ -1,6 +1,103 @@
 <div class="container-fluid" style="display: inline">
   <div class="row"><h1></h1></div>
   <div class="row" style="display: inline">
+    <h3 class="all-page-header">Maitrisez votre consommation avec Linky</h3>
+  </div>
+</div>
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-12">
+      <div class="card card-cascade narrower">
+        <form [formGroup]="linkyForm" novalidate (ngSubmit)="linkyRegister(linkyForm.value, linkyForm.valid)"
+              class="form-horizontal">
+          <fieldset>
+            <h3 class="card-header primary-color white-text">Alertes email de surconsommation</h3>
+            <div class="card-body">
+              <div class="md-form">
+                <input type="text"
+                       id="login"
+                       placeholder="Login Linky" formControlName="login">
+                <div
+                  *ngIf="(linkyForm.controls['login'].touched || submitted) && linkyForm.controls['login'].errors?.required">
+                  <div class="alert alert-danger">Login invalide</div>
+                </div>
+              </div>
+
+              <div class="md-form">
+                <input type="password"
+                       id="password"
+                       placeholder="Mot de passe Linky" formControlName="password">
+                <div
+                  *ngIf="(linkyForm.controls['password'].touched || submitted) && linkyForm.controls['password'].errors?.required">
+                  <div class="alert alert-danger">Mot de passe invalide</div>
+                </div>
+              </div>
+
+              <div class="md-form">
+                <select id="threshold"
+                        placeholder="Seuil kWh / jour avant alerte email" formControlName="threshold"
+                        class="form-control">
+                  <option value="0">Alerte désactivée</option>
+                  <option value="7">>7 kWh (maison ou appartement sans électricité)</option>
+                  <option value="30">>30 kWh (appartement 70 m2)</option>
+                  <option value="55">>55 kWh (maison de 150 m2)</option>
+                  <option value="80">>80 kWh</option>
+                </select>
+                <div
+                  *ngIf="(linkyForm.controls['threshold'].touched || submitted) && linkyForm.controls['threshold'].errors?.required">
+                  <div class="alert alert-danger">Champ vide</div>
+                </div>
+              </div>
+
+              <!--- Buttons Block --->
+              <div class="md-form" style="text-align: center">
+                <button #linkySubmit type="submit" class="btn btn-primary">Soumettre</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <div class="alert alert-danger" *ngIf="errorLinkyMessage">
+          <p>{{errorLinkyMessage}}</p>
+        </div>
+        <div class="alert alert-success" *ngIf="successLinkyMessage">
+          <p>{{successLinkyMessage}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12">
+      <div class="card card-cascade narrower">
+        <h3 class="card-header primary-color white-text">Paramètres</h3>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <tbody>
+            <tr>
+              <th scope="row">Activation surveillance</th>
+              <td>{{linkyActivated}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Consommation veille</th>
+              <td>{{energyYesterday}} kWh</td>
+            </tr>
+            <tr>
+              <th scope="row">Minimum consommation veille</th>
+              <td>{{lowestPowerYesterday}} W</td>
+            </tr>
+            <tr>
+              <th scope="row">Seuil alerte</th>
+              <td>{{threshold}} W</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="container-fluid" style="display: inline">
+  <div class="row"><h1></h1></div>
+  <div class="row" style="display: inline">
     <h3 class="all-page-header">Régler votre adhésion</h3>
   </div>
 </div>
@@ -8,7 +105,8 @@
   <div class="row">
     <div class="col-lg-6 col-md-6 col-xs-12">
       <div class="card card-cascade narrower">
-        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)" class="form-horizontal">
+        <form [formGroup]="registerForm" novalidate (ngSubmit)="register(registerForm.value, registerForm.valid)"
+              class="form-horizontal">
           <fieldset>
             <h3 class="card-header primary-color white-text">Adhésion</h3>
             <div class="card-body">
@@ -18,7 +116,7 @@
                        id="email"
                        placeholder="" formControlName="email">
                 <div
-                  *ngIf="(myForm.controls['email'].touched || submitted) && myForm.controls['email'].errors?.email">
+                  *ngIf="(registerForm.controls['email'].touched || submitted) && registerForm.controls['email'].errors?.email">
                   <div class="alert alert-danger">Email invalide</div>
                 </div>
               </div>
@@ -29,7 +127,7 @@
                        id="amount"
                        placeholder="Montant (Eur)" formControlName="amount" value="">
                 <div
-                  *ngIf="(myForm.controls['amount'].touched || submitted) && myForm.controls['amount'].errors?.required">
+                  *ngIf="(registerForm.controls['amount'].touched || submitted) && registerForm.controls['amount'].errors?.required">
                   <div class="alert alert-danger">Le champ ne peut être vide</div>
                 </div>
               </div>
@@ -53,16 +151,14 @@
         <img src="assets/images/eolienne.jpg" class="img-fluid">
       </div>
       <!--Card content-->
-      <div class="card-body">
-        <!--Title-->
+      <!--div class="card-body">
         <h4 class="card-title">Aide fiscale de l'état français</h4>
-        <!--Text-->
         <p class="card-text">Si vous pensez pouvoir leur donner un petit coup de pouce faites un don à notre
           association.</p>
         <p class="card-text">Reconnue d'intérêt général, <b>66% de votre don est directement déductible des impôts.</b>
         </p>
         <p class="card-text">Nous vous adressons un reçu fiscal en fin d'année.</p>
-      </div>
+      </div-->
     </div>
   </div>
 </section>

@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
   }
 
   public getMembers() {
-    this._userService.getMembers().subscribe(data => {
+    this._userService.getMembersAndPayments().subscribe(data => {
       console.log(data);
       this.members = data;
     }, error => {
