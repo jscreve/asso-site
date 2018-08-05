@@ -9,6 +9,6 @@ export const environment = {
   stripeKey: 'pk_test_rEdOkXSnUj5YrTZjR4aZWJUV',
   apiUrl: 'http://localhost:8761',
   newsFeedUrl: 'https://wattforall.wordpress.com/blog/feed',
-  rest2json: 'https://public-api.wordpress.com/rest/v1.1/sites/wattforall.wordpress.com/posts?pretty=true&fields=title,excerpt,attachments,author,date'
+  rest2json: 'https://public-api.wordpress.com/rest/v1.1/sites/wattforall.wordpress.com/posts?pretty=true&fields=title,excerpt,attachments,content,author,date'
 };
 

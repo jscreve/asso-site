@@ -33,6 +33,14 @@ export class ActivitiesComponent implements OnInit {
             for (const attachment of Object.values(post.attachments)) {
               feedEntry.img.push(attachment.URL);
             }
+
+            // parse youtube videos
+            const domparser = new DOMParser();
+            const domdoc = domparser.parseFromString(post.content, 'text/html');
+            const videoAttachments = domdoc.getElementsByClassName('youtube-player');
+            for (let vidIndex = 0; vidIndex < videoAttachments.length; vidIndex++) {
+              feedEntry.vids.push(videoAttachments.item(vidIndex).outerHTML);
+            }
             this._feeds.push(feedEntry);
           });
         },

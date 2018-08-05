@@ -4,5 +4,6 @@ export class FeedEntry {
   author: string;
   date: string;
   img: string[] = [];
+  vids: string[] = [];
 }
 

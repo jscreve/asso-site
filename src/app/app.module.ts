@@ -29,6 +29,7 @@ import {MemberComponent} from './member/member.component';
 import {NgxPageScrollModule} from 'ngx-page-scroll';
 import {AuthService} from './services/auth.service';
 import {UserService} from './services/user.service';
+import {SafePipe} from './filter/safe.pipe';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {UserService} from './services/user.service';
     LoginComponent,
     AdminComponent,
     AboutusComponent,
-    MemberComponent
+    MemberComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

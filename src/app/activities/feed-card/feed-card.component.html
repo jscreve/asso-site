@@ -9,6 +9,11 @@
     </a>
   </div>
 
+  <!--Card videos-->
+  <div *ngFor="let item of feedEntry.vids" class="view overlay">
+    <p [innerHTML]="item | safe: 'html'"></p>
+  </div>
+
   <!--Card content-->
   <div class="card-body">
     <!--Title-->
